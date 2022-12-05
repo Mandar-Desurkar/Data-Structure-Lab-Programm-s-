@@ -19,3 +19,6 @@ void TOH(int num,char X,char Y,char Z)
     }
 
 }
+
+//to under the concept better click on below link
+//https://youtu.be/q6RicK1FCUs
