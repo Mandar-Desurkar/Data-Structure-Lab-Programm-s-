@@ -1,2 +1,2 @@
-# Data-Structure-Lab-Programm-s-
-These are DS Lab programmes 
+# Data-Structure-Lab-Programs
+These are DS Lab programs
