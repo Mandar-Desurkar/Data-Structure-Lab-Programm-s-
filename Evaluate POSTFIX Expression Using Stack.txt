@@ -24,7 +24,7 @@ int main()
     {
         if(isdigit(*e))
         {
-            num = *e - 48;
+            num = *e - 48; //x-48 to remove the effext of ASCII Values, as '0'(zero) has 48 ASCII value.
             push(num);
         }
         else
