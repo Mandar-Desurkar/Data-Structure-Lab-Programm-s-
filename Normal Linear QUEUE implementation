@@ -1,0 +1,104 @@
+#include<stdio.h>
+#define N 5
+int queue[N];
+int Front=-1;
+int Rear=-1;
+
+
+void enqueue()
+{ int x;
+    printf("Enter the Data in QUEUE:");
+    scanf("%d",&x);
+    
+    if (Rear == N - 1)
+    printf("Overflow \n");
+    
+    else if(Front ==-1 && Rear==- 1)
+    {
+        Front=Rear = 0;
+        queue[Rear]=x;
+    }
+    else
+    {
+        Rear++;
+        queue[Rear]=x;
+    }
+}
+
+
+void dequeue()
+{  
+    if (Front == - 1 && Rear==-1)
+    {
+        printf("Underflow \n");
+    }
+    else if(Front==Rear)
+    {
+        Front=Rear=-1;
+    }
+    
+    else
+    {
+        printf("%d",queue[Front]);
+        Front++;
+    }
+    
+}
+
+
+void display()
+{   int i;
+    if (Front == - 1 && Rear==-1)
+        printf("Empty Queue \n");
+    else
+    {
+        printf("Queue: \n");
+        for (int i = Front; i <= Rear; i++)
+        printf("%d ", queue[i]);
+        printf("\n");
+    }
+}
+
+
+int main()
+{   int choice;
+    int option=1;
+   
+   
+    while(option)
+    {
+        printf("\n Enter the Choice:\n 1.ENQUEUE Operation\n 2.DEQUEUE Operation\n 3.DISPLAY the Queue\n 4.EXIT\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            {
+                enqueue();
+                break;
+            }
+            case 2:
+            {
+                dequeue();
+                break;
+            }
+            case 3:
+            {
+                display();
+                break;
+            }
+            case 4:
+            {
+                option=0;
+                printf("\n EXIT POINT ");
+                break;
+                
+            }
+            default:
+            {
+                printf ("\nPlease Enter a Valid Choice(1/2/3/4)");
+            }
+                
+        }
+    }
+    
+}
