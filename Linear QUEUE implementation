@@ -5,10 +5,8 @@ int Front=-1;
 int Rear=-1;
 
 
-void enqueue()
-{ int x;
-    printf("Enter the Data in QUEUE:");
-    scanf("%d",&x);
+void enqueue(int x)
+{ 
     
     if (Rear == N - 1)
     printf("Overflow \n");
@@ -24,7 +22,6 @@ void enqueue()
         queue[Rear]=x;
     }
 }
-
 
 void dequeue()
 {  
@@ -63,7 +60,7 @@ void display()
 int main()
 {   int choice;
     int option=1;
-   
+    int x;
    
     while(option)
     {
@@ -72,8 +69,9 @@ int main()
         switch(choice)
         {
             case 1:
-            {
-                enqueue();
+            {   printf("Enter the Data in QUEUE:");
+                scanf("%d",&x);
+                enqueue(x);
                 break;
             }
             case 2:
