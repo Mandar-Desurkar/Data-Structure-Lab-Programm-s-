@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node* next;
+};
+
+struct node* front = NULL;
+struct node* rear = NULL;
+
+// Function to check if queue is empty
+int isEmpty() {
+    if (front == NULL && rear == NULL) {
+        return 1;
+    }
+    return 0;
+}
+
+// Function to add an element to the rear of the queue
+void enqueue(int element) {
+    struct node* new_node = (struct node*)malloc(sizeof(struct node));
+    new_node->data = element;
+    new_node->next = NULL;
+    if (isEmpty()) {
+        front = rear = new_node;
+    } else {
+        rear->next = new_node;
+        rear = new_node;
+    }
+    printf("%d has been enqueued to the queue.\n", element);
+}
+
+// Function to remove the front element from the queue
+void dequeue() {
+    if (isEmpty()) {
+        printf("Queue is empty. Cannot dequeue element.\n");
+    } else {
+        struct node* temp = front;
+        front = front->next;
+        printf("%d has been dequeued from the queue.\n", temp->data);
+        free(temp);
+        if (front == NULL) {
+            rear = NULL;
+        }
+    }
+}
+
+// Function to display the elements of the queue
+void display() {
+    if (isEmpty()) {
+        printf("Queue is empty. Cannot display elements.\n");
+    } else {
+        struct node* temp = front;
+        printf("Elements of the queue are: ");
+        while (temp != NULL) {
+            printf("%d ", temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice, element;
+    while (1) {
+        printf("\n1. Enqueue an element to the queue\n");
+        printf("2. Dequeue an element from the queue\n");
+        printf("3. Display the elements of the queue\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                printf("Enter the element to enqueue: ");
+                scanf("%d", &element);
+                enqueue(element);
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                printf("Exiting program...\n");
+                exit(0);
+            default:
+                printf("Invalid choice. Please enter a valid choice.\n");
+        }
+    }
+    return 0;
+}
