@@ -1,0 +1,105 @@
+// C program for the all operations in
+// the Doubly Linked List
+#include <stdio.h>
+#include <stdlib.h>
+ 
+
+struct node {
+    int data;
+    struct node *prev, *next;
+};
+
+struct node *insertionatbeginning(struct node *head, int data)
+{
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+    ptr->prev = NULL;
+    ptr->next = head;
+    ptr->data = data;
+
+    return ptr;
+}
+
+struct node *deletionatindex(struct node *head, int index)
+{
+    struct node *p = head;
+    struct node *q = head->next;
+  
+    for (int i = 0; i < index - 1; i++)
+    {
+        p = p->next;
+        q = q->next;
+       
+    }
+    p->next = q->next;
+
+    free(q);
+    return head;
+}
+
+
+void traversalforward(struct node *ptr)
+{
+	while(ptr!=NULL)
+	{
+		printf("%d - ",ptr->data);
+		ptr = ptr ->next;
+	}
+	printf("NULL");
+}
+
+void traversalbackward(struct node *ptr)
+{
+	while(ptr!=NULL)
+	{
+		printf("%d - ",ptr->data);
+		ptr = ptr ->prev;
+	}
+	printf("NULL");
+}
+
+int main()
+{       
+    struct node *head = NULL;
+    int choice, data;
+
+    while (1) { 
+        printf("\t1 For insertion at beginning");
+        printf("\t2 For deletion of element at any position");
+        printf("\t3 For forward traversal");
+        printf("\t4 For backward traversal");
+        printf("\t5 To exit\n");
+        printf("Enter Choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter the data to be inserted: ");
+                scanf("%d", &data);
+                head = insertionatbeginning(head, data);
+                break;
+      
+            case 2:
+                printf("Enter the index of the node to be deleted: ");
+                scanf("%d", &data);
+                head = deletionatindex(head, data);
+                break;
+
+            case 3:
+                traversalforward(head);
+                break;
+
+            case 4:
+                traversalbackward(head);
+                break;    
+ 
+            case 5:
+                exit(1);
+
+            default:
+                printf("Incorrect Choice. Try Again\n");
+                break;
+        }
+    }
+
+    return 0;
+}
