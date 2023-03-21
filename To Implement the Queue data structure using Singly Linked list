@@ -61,13 +61,35 @@ void display() {
     }
 }
 
+// Function to search for an element in the queue
+void search(int element) {
+    if (isEmpty()) {
+        printf("Queue is empty. Cannot search for element.\n");
+    } else {
+        struct node* temp = front;
+        int found = 0;
+        while (temp != NULL) {
+            if (temp->data == element) {
+                printf("%d is present in the queue.\n", element);
+                found = 1;
+                break;
+            }
+            temp = temp->next;
+        }
+        if (!found) {
+            printf("%d is not present in the queue.\n", element);
+        }
+    }
+}
+
 int main() {
     int choice, element;
     while (1) {
         printf("\n1. Enqueue an element to the queue\n");
         printf("2. Dequeue an element from the queue\n");
         printf("3. Display the elements of the queue\n");
-        printf("4. Exit\n");
+        printf("4. Search for an element in the queue\n");
+        printf("5. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice) {
@@ -83,6 +105,11 @@ int main() {
                 display();
                 break;
             case 4:
+                printf("Enter the element to search for: ");
+                scanf("%d", &element);
+                search(element);
+                break;
+            case 5:
                 printf("Exiting program...\n");
                 exit(0);
             default:
