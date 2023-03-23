@@ -16,8 +16,13 @@ struct node *insertionatbeginning(struct node *head, int data)
     ptr->next = head;
     ptr->data = data;
 
+    if (head != NULL) {
+        head->prev = ptr;
+    }
+
     return ptr;
 }
+
 
 struct node *deletionatindex(struct node *head, int index)
 {
@@ -47,20 +52,19 @@ void traversalforward(struct node *ptr)
 	printf("NULL");
 }
 
-void traversalbackward(struct node *ptr)
-{
-    // Traverse to the last node
-    while (ptr->next != NULL) {
-        ptr = ptr->next;
+void print_reverse_list(struct node *head) {
+    struct node *temp = head;
+    while (temp->next != NULL) {
+        temp = temp->next;
     }
-
-    // Traverse backwards and print the data of each node
-    while (ptr != NULL) {
-        printf("%d - ", ptr->data);
-        ptr = ptr->prev;
+    printf("Reversed list: ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->prev;
     }
-    printf("NULL");
+    printf("\n");
 }
+
 
 
 int main()
@@ -69,7 +73,7 @@ int main()
     int choice, data;
 
     while (1) { 
-        printf("\t1 For insertion at beginning");
+        printf("1 For insertion at beginning");
         printf("\t2 For deletion of element at any position");
         printf("\t3 For forward traversal");
         printf("\t4 For backward traversal");
@@ -95,7 +99,7 @@ int main()
                 break;
 
             case 4:
-                traversalbackward(head);
+                print_reverse_list(head);
                 break;    
  
             case 5:
