@@ -1,3 +1,32 @@
+
+//TOH-Tower Of Hanoi//
+
+#include <stdio.h>
+
+void TOH(int,char,char,char);
+
+void main()
+{   int num;
+    printf("Enter the number of Dis you want to insert:\n");
+    scanf("%d",&num);
+    TOH(num,'A','B','C');
+}
+
+void TOH(int num,char A,char B,char C)
+{
+    if (num>0)
+    {
+        TOH(num-1,A,C,B);
+        printf("\n%c---->%c",A,C);
+        TOH(num-1,B,A,C);
+    }
+
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 #include <stdio.h>
 //TOH-Tower Of Hanoi//
 void TOH(int,char,char,char);
